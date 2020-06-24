@@ -3,10 +3,7 @@ package kr.ac.jejunu.user.controller;
 import kr.ac.jejunu.user.model.Todo;
 import kr.ac.jejunu.user.repository.TodoDao;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,12 +21,16 @@ public class TodoController {
         if (optionalUser.isPresent()) {
             todo = optionalUser.get();
         }
-
         return todo;
     }
 
-    @GetMapping("/")
+    @GetMapping("/datalist")
     public List<Todo> getList() {
         return todoDao.findAll();
+    }
+
+    @PostMapping("/save")
+    public Todo addTodo(@RequestBody Todo todo) {
+        return todoDao.save(todo);
     }
 }
