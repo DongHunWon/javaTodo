@@ -1,6 +1,7 @@
 package kr.ac.jejunu.user.model;
 
 import lombok.Data;
+import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,4 +15,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String todo_content;
+    private Integer isdone;
 }
+//32분
