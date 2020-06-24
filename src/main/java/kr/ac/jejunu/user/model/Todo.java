@@ -10,11 +10,10 @@ import javax.persistence.Id;
 
 @Entity(name = "todo")
 @Data
-public class User {
+public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String todo_content;
     private Integer isdone;
 }
-//32분
