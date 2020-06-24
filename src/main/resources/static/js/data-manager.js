@@ -1,5 +1,18 @@
+function saveDate(data) {
+    fetch(`./todo/save`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            todo_content: data
+        })
+    }).then(res => res.json());
+    window.location.reload();
+}
+
 async function loadData() {
-    let datalist = await fetch(`./todo/datalist`, {
+    let datalist = await fetch(`./todo/data/list`, {
         method: "get",
     }).then(res => res.json());
 
@@ -14,4 +27,4 @@ async function loadData() {
     return datalist;
 }
 
-export {loadData};
+export {saveDate, loadData};

@@ -24,7 +24,7 @@ public class TodoController {
         return todo;
     }
 
-    @GetMapping("/datalist")
+    @GetMapping("/data/list")
     public List<Todo> getList() {
         return todoDao.findAll();
     }
