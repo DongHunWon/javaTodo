@@ -1,4 +1,4 @@
-package kr.ac.jejunu.user;
+package kr.ac.jejunu.user.model;
 
 import lombok.Data;
 
@@ -7,12 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "userinfo")
+@Entity(name = "todo")
 @Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String password;
+    private String todo_content;
 }
