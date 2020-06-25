@@ -1,12 +1,14 @@
-import { saveDate, loadData, deleteData } from './data-manager.js';
+import { saveDate, loadData, deleteData, updateData } from './data-manager.js';
 
 const $result = document.querySelector('#result');
 const $input_form = document.querySelector('#input-form');
 const $input = document.querySelector('#input');
 
+let todos;
+
 async function init() {
-    const todos = await loadData();
-    $result.innerHTML = `<ul>${todos}</ul>`;
+    todos = await loadData();
+    $result.innerHTML = todos;
 }
 
 $input_form.addEventListener("submit", (event) => {
@@ -18,9 +20,12 @@ $input_form.addEventListener("submit", (event) => {
 });
 
 $result.addEventListener('click',event => {
-    const { className } = event.target;
-    if(className === 'delete') {
-        deleteData(event.target.parentElement.dataset);
+    const target = event.target;
+    if(target.className === 'delete') {
+        deleteData(target.parentElement.dataset.index);
+    }
+    else if(target.className === 'toggle-checked') {
+        updateData(target.parentElement.dataset.index, target.nextElementSibling.innerHTML, Number(target.checked));
     }
 });
 

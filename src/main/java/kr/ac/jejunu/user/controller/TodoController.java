@@ -24,7 +24,7 @@ public class TodoController {
         return todo;
     }
 
-    @GetMapping("/data/list")
+    @GetMapping("/list")
     public List<Todo> getList() {
         return todoDao.findAll();
     }
@@ -34,7 +34,12 @@ public class TodoController {
         return todoDao.save(todo);
     }
 
-    @DeleteMapping("/data/delete/{id}")
+    @PostMapping("/update")
+    public Todo updateTodo(@RequestBody Todo todo) {
+        return todoDao.save(todo);
+    }
+
+    @DeleteMapping("/delete/{id}")
     public Boolean deleteTodo(@PathVariable("id") Integer id){
         todoDao.deleteById(id);
         return !todoDao.findById(id).isPresent();

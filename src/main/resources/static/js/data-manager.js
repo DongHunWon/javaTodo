@@ -1,5 +1,5 @@
-function saveDate(data) {
-    fetch(`./todo/save`, {
+async function saveDate(data) {
+    await fetch(`./todo/save`, {
         method: "post",
         headers: {
             "Content-Type": "application/json",
@@ -13,7 +13,7 @@ function saveDate(data) {
 }
 
 async function loadData() {
-    let datalist = await fetch(`./todo/data/list`, {
+    let datalist = await fetch(`./todo/list`, {
         method: "get",
     }).then(res => res.json());
 
@@ -29,10 +29,26 @@ async function loadData() {
 }
 
 async function deleteData(id) {
-    await fetch(`./todo/data/delete/${parseInt(id.index)}`, {
+    await fetch(`./todo/delete/${parseInt(id)}`, {
         method: "delete",
     }).then(res => res.json());
     window.location.reload();
 }
 
-export {saveDate, loadData, deleteData};
+async function updateData(id, data, isdone) {
+    await fetch(`./todo/update`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: id,
+            todo_content: data,
+            isdone: isdone
+        })
+    }).then(res => res.json());
+}
+
+
+
+export {saveDate, loadData, deleteData, updateData};
