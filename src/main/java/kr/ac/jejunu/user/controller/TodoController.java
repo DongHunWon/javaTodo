@@ -33,4 +33,10 @@ public class TodoController {
     public Todo addTodo(@RequestBody Todo todo) {
         return todoDao.save(todo);
     }
+
+    @DeleteMapping("/data/delete/{id}")
+    public Boolean deleteTodo(@PathVariable("id") Integer id){
+        todoDao.deleteById(id);
+        return !todoDao.findById(id).isPresent();
+    }
 }

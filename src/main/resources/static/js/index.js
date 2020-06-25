@@ -1,4 +1,4 @@
-import { saveDate, loadData } from './data-manager.js';
+import { saveDate, loadData, deleteData } from './data-manager.js';
 
 const $result = document.querySelector('#result');
 const $input_form = document.querySelector('#input-form');
@@ -15,6 +15,13 @@ $input_form.addEventListener("submit", (event) => {
     if(!value.trim()) return;
 
     saveDate(value);
+});
+
+$result.addEventListener('click',event => {
+    const { className } = event.target;
+    if(className === 'delete') {
+        deleteData(event.target.parentElement.dataset);
+    }
 });
 
 init();
