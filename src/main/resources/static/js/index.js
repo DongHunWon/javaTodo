@@ -1,4 +1,4 @@
-import { saveDate, loadData, deleteData, updateData } from './data-manager.js';
+import { saveData, loadData, deleteData, updateData } from './data-manager.js';
 
 const $result = document.querySelector('#result');
 const $input_form = document.querySelector('#input-form');
@@ -15,8 +15,9 @@ $input_form.addEventListener("submit", (event) => {
     event.preventDefault();
     const value = $input.value;
     if(!value.trim()) return;
+    $input.value = '';
 
-    saveDate(value);
+    saveData(value);
 });
 
 $result.addEventListener('click',event => {

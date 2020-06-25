@@ -1,4 +1,4 @@
-async function saveDate(data) {
+async function saveData(data) {
     await fetch(`./todo/save`, {
         method: "post",
         headers: {
@@ -51,4 +51,4 @@ async function updateData(id, data, isdone) {
 
 
 
-export {saveDate, loadData, deleteData, updateData};
+export {saveData, loadData, deleteData, updateData};
