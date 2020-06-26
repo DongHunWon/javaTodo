@@ -5,6 +5,8 @@ import kr.ac.jejunu.user.repository.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequiredArgsConstructor
@@ -28,11 +30,19 @@ public class UserController {
     public User register(@RequestBody User user) {
         user.setBlood(0);
         user.setSecondpassword("");
-        if(userDao.findByEmail(user.getEmail()).isPresent()){
-            return user;
-        } else {
-            user.setPassword(bytesToHex(user.getPassword()));
-            return userDao.save(user);
-        }
+
+        user.setPassword(bytesToHex(user.getPassword()));
+        return userDao.save(user);
     }
+
+//    @PostMapping("/secondpassword")
+//    public User secondpassword(@RequestBody User user) {
+//        User original = userDao.findByEmail(user.getEmail()).get();
+//        user.setPassword(original.getPassword());
+//        user.setEmail(original.getEmail());
+//        user.setId(original.getId());
+//        user.setPhone(original.getPhone());
+//        user.setName(original.getName());
+//        return userDao.save(user);
+//    }
 }
